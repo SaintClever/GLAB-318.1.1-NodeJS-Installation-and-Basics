@@ -1,5 +1,6 @@
 const http = require('http');
 const fs = require('fs');
+const readline = require('readline');
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -9,6 +10,21 @@ const port = 3000;
 //   res.setHeader('Content-Type', 'text/plain');
 //   res.end('Hello World!\n');
 // });
+
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+setTimeout(() => {
+  rl.question("\nHello, what's your name: ", (route) => {
+    console.log(`Hello, ${route}. The routes are: [/, bye, read, write]`);
+    console.log("\nExample: http://127.0.0.1:3000/bye");
+    rl.close();
+  })
+}, 1000);
+
 
 const server = http.createServer((req, res) => {
   // ./
